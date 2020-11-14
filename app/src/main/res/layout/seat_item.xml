@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:gravity="center"
+    >
+
+   <FrameLayout
+       android:id="@+id/seat_item_bg"
+       android:layout_width="60dp"
+       android:layout_height="60dp"
+       android:background="@drawable/seat_place_bg">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
+           <TextView
+               android:id="@+id/seat_place_num"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textAlignment="center"
+               android:textColor="#000"
+               android:text="@string/_33"/>
+           <TextView
+               android:id="@+id/seat_place_price"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:textColor="@color/colorPrimaryDark"
+               android:text="@string/_3000_t"
+               android:textSize="14sp"
+               android:textAlignment="center" />
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="10dp"
+           android:layout_gravity="center|bottom"
+           android:background="#F8474646"/>
+   </FrameLayout>
+
+</LinearLayout>
