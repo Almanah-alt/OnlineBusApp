@@ -20,7 +20,11 @@ interface TripDao {
 
     @Transaction
     @Query("Select * FROM trips WHERE tripId = :id")
-    fun getTripWithBus(id: Long): TripWithBus
+    fun getTripWithBusById(id: Long): TripWithBus
+
+    @Transaction
+    @Query("Select * FROM trips WHERE tripId = :id")
+    fun getTripById(id: Long): Trip
 
 
 

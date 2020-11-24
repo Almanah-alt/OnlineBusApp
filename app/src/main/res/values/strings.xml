@@ -1,11 +1,8 @@
 <resources>
     <string name="app_name">OnlineBus</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
     <string name="menu_home">Билеты</string>
     <string name="menu_gallery">Gallery</string>
@@ -18,7 +15,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="almaty_label">Алматы</string>
-    <string name="arrow_label"><![CDATA[->]]></string>
     <string name="nur_sultan_label">Нур-Султан</string>
     <string name="example_label">Темиртау Караганды</string>
     <string name="left_place_label">Осталось мест: </string>
@@ -49,6 +45,33 @@
     <string name="todo">TODO</string>
     <string name="boook">Забронировать</string>
     <string name="_33">33</string>
-    <string name="_3000_t">3000 t</string>
+    <string name="_3000_t">3000 т</string>
     <string name="booking_label">Бронирование</string>
+    <string name="toolbar_passengers">Пассажиры</string>
+    <string name="place_id">Место:</string>
+    <string name="place_price">Тариф: </string>
+    <string name="F_L_S">ФИО</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="user_email_hint">Email</string>
+    <string name="user_IIN">ИИН</string>
+    <string name="price_label">Стоимость</string>
+    <string name="ticket_label">Билеты: </string>
+    <string name="service_price">Сервисный сбор</string>
+    <string name="total_price">Итого: </string>
+    <string name="next_btn">Далее</string>
+    <string name="payment_toolbar_title">Оплата</string>
+    <string name="payment_card_number_hint">Номер карты</string>
+    <string name="card_owner_name_hint">Имя держателя карты</string>
+    <string name="expiration_date_hint">Срок действия</string>
+    <string name="cvc2_cvv2">CVC2/CVV2</string>
+    <string name="pay_3000_t">Оплатить 3000 т</string>
+    <string name="order_detail_toolbar_title">Детали заказа</string>
+    <string name="_6_12_2019">Дата заказа: </string>
+    <string name="_15_57">Время заказа: </string>
+    <string name="total_price_3000">Сумма: </string>
+    <string name="order_detail_passenger_name">Пассажир:</string>
+    <string name="success_payed_label">Оплачено!</string>
+    <string name="hint_label_navigate_to_order_detail">Чтобы посмотреть покупку переходите в</string>
+    <string name="history_detail_label">История заказов</string>
+    <string name="ok">OK</string>
 </resources>

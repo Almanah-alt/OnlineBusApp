@@ -9,6 +9,7 @@ import com.example.onlinebus.R
 @Entity(tableName = "trips")
 data class Trip(
     @PrimaryKey @ColumnInfo(name = "tripId") val tripId: Long? = null,
+    @ColumnInfo(name = "userTripId") val userTripId: Long? = null,
     @ColumnInfo(name = "from_city") val fromCity: String,
     @ColumnInfo(name = "to_city") val toCity: String,
     @ColumnInfo(name = "departure_day") val depDay: String,

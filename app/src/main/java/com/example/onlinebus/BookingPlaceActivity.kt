@@ -1,9 +1,11 @@
 package com.example.onlinebus
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.AsyncTask
 import android.os.Bundle
+import android.widget.Button
 import android.widget.GridView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -25,24 +27,40 @@ class BookingPlaceActivity : AppCompatActivity() {
    lateinit var secondGridView: GridView
    lateinit var thirdGridView: GridView
    lateinit var lastGridView: GridView
+    private var placeID: Long = 0
+    private var placePrice: Int = 0
+    private var placeNum: Int = 0
 
+    companion object{
+        const val PLACE_ID = "place_id"
+        const val PLACE_PRICE = "place_price"
+        const val PLACE_NUM = "place_num"
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_booking_place)
+        loadBusPlaces()
+        toolbarSettings()
 
-        var firstColumnList = ArrayList<Place>()
-        var secondColumnList = ArrayList<Place>()
-        var thirdColumnList = ArrayList<Place>()
-        var lastColumnList = ArrayList<Place>()
+    }
+
+
+
+    private fun loadBusPlaces(){
+
+        val firstColumnList = ArrayList<Place>()
+        val secondColumnList = ArrayList<Place>()
+        val thirdColumnList = ArrayList<Place>()
+        val lastColumnList = ArrayList<Place>()
 
         val busId: Long = intent.getLongExtra(TripActivity.BUS_ID, 0)
         val tripId: Long = intent.getLongExtra(TripActivity.TRIP_ID, 0)
-        toolbarSettings()
+
         AsyncTask.execute {
             val busWithPlaces = AppDatabase.getInstance(applicationContext)?.getBusDao()?.getBusWithPlacesByBusId(busId)
-            val tripWithBus = AppDatabase.getInstance(applicationContext)?.getTripDao()?.getTripWithBus(tripId)
+            val tripWithBus = AppDatabase.getInstance(applicationContext)?.getTripDao()?.getTripWithBusById(tripId)
 
             runOnUiThread {
 
@@ -66,13 +84,19 @@ class BookingPlaceActivity : AppCompatActivity() {
                 lastGridView = findViewById(R.id.last_grid_view)
 
                 gridView.setOnItemClickListener { parent, view, position, id ->
-                   if (firstColumnList[position].status){
-                       view.seat_item_bg.setBackgroundResource(R.drawable.selected_seat_place_bg)
-                       view.seat_place_price.setTextColor(Color.WHITE)
-                       view.seat_place_num.setTextColor(Color.WHITE)
-                   }
+                    placeNum = firstColumnList[position].placeNum
+                    placeID = firstColumnList[position].placeId!!
+                    placePrice = firstColumnList[position].placePrice
+                    if (firstColumnList[position].status){
+                        view.seat_item_bg.setBackgroundResource(R.drawable.selected_seat_place_bg)
+                        view.seat_place_price.setTextColor(Color.WHITE)
+                        view.seat_place_num.setTextColor(Color.WHITE)
+                    }
                 }
                 secondGridView.setOnItemClickListener { parent, view, position, id ->
+                    placeNum = secondColumnList[position].placeNum
+                    placePrice = secondColumnList[position].placePrice
+                    placeID = secondColumnList[position].placeId!!
                     if (secondColumnList[position].status){
                         view.seat_item_bg.setBackgroundResource(R.drawable.selected_seat_place_bg)
                         view.seat_place_price.setTextColor(Color.WHITE)
@@ -80,6 +104,9 @@ class BookingPlaceActivity : AppCompatActivity() {
                     }
                 }
                 thirdGridView.setOnItemClickListener { parent, view, position, id ->
+                    placeNum = thirdColumnList[position].placeNum
+                    placePrice = thirdColumnList[position].placePrice
+                    placeID = thirdColumnList[position].placeId!!
                     if (thirdColumnList[position].status){
                         view.seat_item_bg.setBackgroundResource(R.drawable.selected_seat_place_bg)
                         view.seat_place_price.setTextColor(Color.WHITE)
@@ -87,11 +114,22 @@ class BookingPlaceActivity : AppCompatActivity() {
                     }
                 }
                 lastGridView.setOnItemClickListener { parent, view, position, id ->
-                    if (thirdColumnList[position].status){
+                    placeNum = lastColumnList[position].placeNum
+                    placePrice = lastColumnList[position].placePrice
+                    placeID = lastColumnList[position].placeId!!
+                    if (lastColumnList[position].status){
                         view.seat_item_bg.setBackgroundResource(R.drawable.selected_seat_place_bg)
                         view.seat_place_price.setTextColor(Color.WHITE)
                         view.seat_place_num.setTextColor(Color.WHITE)
                     }
+                }
+                book_btn.setOnClickListener {
+                    val intent =  Intent(this, BookingDetailActivity::class.java)
+                        intent.putExtra(PLACE_ID, placeID)
+                        intent.putExtra(PLACE_PRICE, placePrice)
+                        intent.putExtra(PLACE_NUM, placeNum)
+                        intent.putExtra(TripActivity.TRIP_ID, tripId)
+                    startActivity(intent)
                 }
 
                 var adapter = GridViewAdapter(this, firstColumnList)
@@ -104,8 +142,6 @@ class BookingPlaceActivity : AppCompatActivity() {
                 lastGridView.adapter = adapter4
             }
         }
-
-
     }
 
     @SuppressLint("SetTextI18n")
